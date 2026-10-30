@@ -5,12 +5,18 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 // Connect to MongoDB
 mongoose
   .connect(
-    "mongodb+srv://deepakpmk:1X0BKcInjfSxteaj@feed-back.4zzc5.mongodb.net/feedback?retryWrites=true&w=majority&appName=feed-back",
+    "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.14.0",
   )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Failed to connect to MongoDB", err));
@@ -52,7 +58,7 @@ app.get("/api/getfeedback", async (req, res) => {
   }
 });
 
-const PORT = 8080;
+const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

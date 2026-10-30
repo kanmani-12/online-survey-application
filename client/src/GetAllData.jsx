@@ -8,7 +8,7 @@ function GetAllData() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/getfeedback")
+      .get("http://localhost:5173/api/getfeedback")
       .then((response) => {
         setFeedbacks(response.data);
         setLoading(false);

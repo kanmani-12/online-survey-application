@@ -21,7 +21,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/feedback", feedback);
+      await axios.post("http://localhost:5001/api/feedback", feedback);
       alert("Feedback submitted successfully!");
     } catch (error) {
       console.error("Error submitting feedback:", error);
