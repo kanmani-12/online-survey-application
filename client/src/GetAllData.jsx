@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function GetAllData() {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ function GetAllData() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5173/api/getfeedback")
+      .get(`${API_URL}/api/getfeedback`)
       .then((response) => {
         setFeedbacks(response.data);
         setLoading(false);

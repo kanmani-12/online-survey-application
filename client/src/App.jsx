@@ -2,6 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [feedback, setFeedback] = useState({
     q1: "",
@@ -21,10 +23,11 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5001/api/feedback", feedback);
+      await axios.post(`${API_URL}/api/feedback`, feedback);
       alert("Feedback submitted successfully!");
     } catch (error) {
       console.error("Error submitting feedback:", error);
+      alert("Submission failed. Please try again in a moment.");
     }
   };
 
